@@ -1,0 +1,53 @@
+---
+title: "Clase Introductoria"
+author: "Ivan Morales"
+format: html
+editor: visual
+---
+
+## pkgs
+
+CTRL + ALT + I ## Inicializar chunk de codigo
+
+```{r}
+# para correr todo un chunk con el comando 
+# CTRL + SHIFT + ENTER
+# para correr solo una linea
+# CTRL + ENTER
+
+library(tidyverse)
+library(fpp3)
+
+```
+```{r}
+mpg
+tourism
+```
+
+```{r}
+distinct(tourism, State)
+```
+```{r}
+summarise(group_by(as_tibble(filter(tourism, State == 'Victoria', Region == 'Lakes')), Purpose),media = mean(Trips))
+```
+
+```{r}
+tourism |> 
+  filter(State == 'Victoria', Region == 'Lakes') |> 
+  as_tibble() |> 
+  group_by(Purpose) |> 
+  summarise(media = mean(Trips))
+```
+```{r}
+tourism |> 
+  filter(State == 'Victoria', Region == 'Lakes') |> 
+  autoplot(Trips) + 
+  facet_wrap(vars(Purpose), scale = 'free_y') +
+  theme(legend.position = 'none')
+```
+```{r}
+tourism |>
+  filter(State == 'Victoria', Region == 'Lakes') |> 
+  write_csv('Victoria.csv')
+```
+
