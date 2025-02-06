@@ -7,7 +7,7 @@ editor: visual
 
 ## pkgs
 
-CTRL + ALT + I ## Inicializar chunk de codigo
+CTRL + ALT + I \## Inicializar chunk de codigo
 
 ```{r}
 # para correr todo un chunk con el comando 
@@ -19,6 +19,7 @@ library(tidyverse)
 library(fpp3)
 
 ```
+
 ```{r}
 mpg
 tourism
@@ -27,6 +28,7 @@ tourism
 ```{r}
 distinct(tourism, State)
 ```
+
 ```{r}
 summarise(group_by(as_tibble(filter(tourism, State == 'Victoria', Region == 'Lakes')), Purpose),media = mean(Trips))
 ```
@@ -38,6 +40,7 @@ tourism |>
   group_by(Purpose) |> 
   summarise(media = mean(Trips))
 ```
+
 ```{r}
 tourism |> 
   filter(State == 'Victoria', Region == 'Lakes') |> 
@@ -45,9 +48,9 @@ tourism |>
   facet_wrap(vars(Purpose), scale = 'free_y') +
   theme(legend.position = 'none')
 ```
+
 ```{r}
 tourism |>
   filter(State == 'Victoria', Region == 'Lakes') |> 
   write_csv('Victoria.csv')
 ```
-

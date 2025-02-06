@@ -1,0 +1,36 @@
+---
+title: "Descomposicion"
+author: "Ivan Morales"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+library(fpp3)
+```
+
+```{r}
+tourism
+```
+
+# Descomposiciones
+
+-   Desc. Aditiva
+
+    \$ Y_t = T_t + S_t + R_t \$
+
+-   Desc. Multiplicativa
+
+    \$ Y_t = T_t \* S_t \* R_t \$
+
+```{r}
+aus_production |> 
+  autoplot(Gas)
+aus_production |> 
+  model(
+    stl = STL(Gas ~ trend(window = 30) + season())
+  ) |> 
+  components() |> 
+  autoplot()
+```
